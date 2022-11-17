@@ -130,6 +130,8 @@ button:active {
 }
 
 #weather {
+    height: 100px;
+    width: 300px;
     background-color: #9ec862;
     border-radius: 3px;
     border: none;

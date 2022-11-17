@@ -172,8 +172,29 @@ if ('Notification' in window) {
 switchMode('pomodoro');
 });
 
-const weather = document.getElementById('weather')
-weather.addEventListener('click', () => {
-    window.open('https://weather.com/weather/tenday/l/Atlanta+GA?canonicalCityId=508c6a2d4ca8386de1772c4316073b1448fb270ee2d264d01c7b2a4b33073688',
-    "width=550","height=170")
-})
+window.addEventListener('load', () => {
+    let lon;
+    let lat;
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            lon = position.coords.longitude;
+            lat = position.coords.latitude;
+
+            const api = `https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${lat}&lon=${lon}&appid=00bb4bd862d711b907fa4df4b0287b45`;
+
+            fetch(api)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    const { name } = data;
+                    const { icon, description } = data.weather;
+                    const { temp, humidity } = data.main;
+                    const { speed } = data.wind;
+                    console.log(name, icon, description, temp, humidity, speed);
+                    
+                })
+        });
+    }
+});
