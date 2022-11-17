@@ -189,11 +189,16 @@ window.addEventListener('load', () => {
                 })
                 .then(data => {
                     const { name } = data;
-                    const { icon, description } = data.weather;
+                    const { icon, description } = data.weather[0];
                     const { temp, humidity } = data.main;
                     const { speed } = data.wind;
                     console.log(name, icon, description, temp, humidity, speed);
                     
+                    document.querySelector('.place').innerText = name;
+                    document.querySelector('.icon').src = "https://openweathermap.org/img/wn/" + icon + ".png";
+                    document.querySelector('.tempdegree').innerText = temp + "°F";
+                    document.querySelector('.description').innerText = description;
+                    document.querySelector('.wind').innerText = "Wind Speed: " + speed + " mph";
                 })
         });
     }
