@@ -1,0 +1,142 @@
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --pomodoro: hsl(223, 25%, 40%);
+    --shortBreak: hsl(48, 23%, 40%);
+    --longBreak: hsl(105, 16%, 40%);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background: url(wallpaperflare.com_wallpaper.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+    user-select: none;
+}
+
+#clock {
+    position: absolute;
+    font-size: 100px;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    color: white;
+    border: solid 2px black;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+progress {
+    border-radius: 2px;
+    width: 100%;
+    height: 12px;
+    position: fixed;
+    top: 0;
+}
+  
+progress::-webkit-progress-bar {
+   background-color: rgba(0, 0, 0, 0.1);;
+}
+  
+progress::-webkit-progress-value {
+    background-color: lightgreen;
+}
+
+.timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    border: solid 2px black;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.clock {
+    padding-top: -50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 5rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.mode-button {
+    font-size: 16px;
+    height: 28px;
+    cursor: pointer;
+    box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+    font-weight: 300;
+    color: rgb(30, 27, 27);
+    border: 1px solid transparent;
+    margin: 0px;
+    border-radius: 4px;
+    padding: 2px 12px;
+    background-color: white;
+}
+
+.mode-button.active {
+    border-color: #fff;
+}
+
+.main-button {
+    cursor: pointer;
+    box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+    font-size: 22px;
+    height: 55px;
+    color: hsl(175, 26%, 41%);
+    font-weight: bold;
+    width: 200px;
+    background-color: white;
+    border-width: initial;
+    border-style: none;
+    margin: 20px 0px 0px;
+    padding: 0px 12px;
+    border-radius: 4px;
+    transition: color 0.5s ease-in-out 0s;
+}
+
+button:focus,
+button:active {
+    outline: none;
+}
+
+.main-button.active {
+    transform: translateY(6px);
+    box-shadow: none;
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 550px) {
+    .clock {
+        font-size: 8rem;
+    }
+}
+
+#weather {
+    background-color: #9ec862;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+}

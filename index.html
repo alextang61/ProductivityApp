@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity!</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body onload="realTimeClock()">
+    <div id="clock"></div>
+    <main class="app">
+        <progress id="js-progress" value="0"></progress>
+        <div class="progress-bar"></div>
+        <div class="timer">
+            <div class="button-group mode-buttons" id="js-mode-buttons">
+                <button data-mode="pomodoro" class="button active mode-button" id="js-pomodoro">
+                    Pomodoro
+                </button>
+                <button data-mode="shortBreak" class="button mode-button" id="js-short-break">
+                    Short Break
+                </button>
+                <button data-mode="longBreak" class="button mode-button" id="js-long-break">
+                    Long Break
+                </button>
+            </div>
+            <div class="clock" id="js-clock">
+                <span id="js-minutes">50</span>
+                <spam class="separator">:</spam>
+                <span id="js-seconds">00</span>
+            </div>
+            <button class="main-button" data-action="start" id="js-btn">
+                Start Timer
+            </button>
+        </div>
+    </main>
+    <div class="hidden">
+        <audio src="backtowork.mp3" data-sound="pomodoro"></audio>
+        <audio src="break.mp3" data-sound="shortBreak"></audio>
+        <audio src="break.mp3" data-sound="longBreak"></audio>
+    </div>
+    <button id="weather">Weather!</button>
+    <script src="script.js"></script>
+</body>
+</html>
