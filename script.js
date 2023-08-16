@@ -1,3 +1,4 @@
+// Function to show clock
 function realTimeClock() {
     let d = new Date();
     let s = d.getSeconds();
@@ -15,16 +16,37 @@ function realTimeClock() {
     let t = setTimeout(realTimeClock, 500);
 }
 
+// Pomodoro timers start
 const timer = {
-    pomodoro: 50,
+    pomodoro: 1,
     shortBreak: 10,
     longBreak: 15,
     longBreakInterval: 2,
     sessions: 0,
 };
 
+function updateTimer() {
+    // Prompt the user for new values for the timer properties
+    const newPomodoro = prompt("Enter new value for Pomodoro (in minutes):", timer.pomodoro);
+    const newShortBreak = prompt("Enter new value for Short Break (in minutes):", timer.shortBreak);
+    const newLongBreak = prompt("Enter new value for Long Break (in minutes):", timer.longBreak);
+    const newLongBreakInterval = prompt("Enter new value for Long Break Interval:", timer.longBreakInterval);
+    const newSessions = prompt("Enter new value for Sessions:", timer.sessions);
+  
+    // Update the timer object properties with the new values
+    timer.pomodoro = parseInt(newPomodoro) || timer.pomodoro;
+    timer.shortBreak = parseInt(newShortBreak) || timer.shortBreak;
+    timer.longBreak = parseInt(newLongBreak) || timer.longBreak;
+    timer.longBreakInterval = parseInt(newLongBreakInterval) || timer.longBreakInterval;
+    timer.sessions = parseInt(newSessions) || timer.sessions;
+  
+    // Display the updated timer object in the console
+    console.log(timer);
+}
+
 let interval;
 
+// Button sounds
 const buttonSound = new Audio('button-sound.mp3');
 const mainButton = document.getElementById('js-btn');
 mainButton.addEventListener('click', () => {
@@ -41,20 +63,21 @@ const modeButtons = document.querySelector('#js-mode-buttons');
 modeButtons.addEventListener('click', handleMode);
 
 function getRemainingTime(endTime) {
-const currentTime = Date.parse(new Date());
-const difference = endTime - currentTime;
+    const currentTime = Date.parse(new Date());
+    const difference = endTime - currentTime;
 
-const total = Number.parseInt(difference / 1000, 10);
-const minutes = Number.parseInt((total / 60) % 60, 10);
-const seconds = Number.parseInt(total % 60, 10);
+    const total = Number.parseInt(difference / 1000, 10);
+    const minutes = Number.parseInt((total / 60) % 60, 10);
+    const seconds = Number.parseInt(total % 60, 10);
 
-return {
-    total,
-    minutes,
-    seconds,
-};
+    return {
+        total,
+        minutes,
+        seconds,
+    };
 }
 
+// Start timer
 function startTimer() {
 let { total } = timer.remainingTime;
 const endTime = Date.parse(new Date()) + total * 1000;
@@ -172,6 +195,7 @@ if ('Notification' in window) {
 switchMode('pomodoro');
 });
 
+// Weather API Function
 window.addEventListener('load', () => {
     let lon;
     let lat;
@@ -203,3 +227,29 @@ window.addEventListener('load', () => {
         });
     }
 });
+
+var timerDisplay = document.getElementById("timer");
+var startTime = new Date();
+var timerInterval = setInterval(function() {
+  var currentTime = new Date();
+  var timeElapsed = Math.floor((currentTime - startTime) / 1000);
+  var hours = Math.floor(timeElapsed / 3600);
+  var minutes = Math.floor((timeElapsed % 3600) / 60);
+  var seconds = timeElapsed % 60;
+  timerDisplay.innerHTML = "Timer: " + ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+}, 1000);
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
